@@ -23,9 +23,10 @@ caffe.set_mode_cpu()
 model_def = './examples/TextBoxes/deploy.prototxt'
 model_weights = './examples/TextBoxes/TextBoxes_icdar13.caffemodel'
 
-inDir = "/mnt/d/fsnsextract/0/00000"
-outDir = "/mnt/d/kaka/"
-fileList = [x[0] for x in os.listdir(inDir) if x[0] != inDir]
+inDir = "/mnt/c/meroora/gaz"
+outDir = "/mnt/d/output/"
+fileList = [x for x in os.listdir(inDir) if x != inDir]
+
 
 use_multi_scale = True
 
@@ -39,14 +40,15 @@ net = caffe.Net(model_def,      # defines the structure of the model
                 model_weights,  # contains the trained weights
                 caffe.TEST)     # use test mode (e.g., don't perform dropout)
 
-dt_results=[]
+
 
 
 
 for file in fileList:
+	dt_results=[]
 	filebase = str(os.path.basename(file))
 	print("processing", filebase)
-	image=caffe.io.load_image(inDir + "/" + file + ".png")
+	image=caffe.io.load_image(inDir + "/"  + file )
 	image_height,image_width,channels=image.shape
 	plt.clf()
 	plt.imshow(image)
