@@ -5,6 +5,7 @@
 *.lo
 *.o
 *.cuo
+*.png
 
 # Compiled Dynamic libraries
 *.so
