@@ -12,6 +12,8 @@ import json
 import functools
 import logging
 import collections
+import pytesseract
+from PIL import Image
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -70,6 +72,8 @@ def run(inpath, outpath):
     plt.clf()
     plt.imshow(image)
     currentAxis = plt.gca()
+
+    img = cv2.imread(inpath)
     for scale in scales:
         print(scale)
         image_resize_height = scale[0]
@@ -124,8 +128,10 @@ def run(inpath, outpath):
             ymax = int(dt[5])
             coords = (xmin, ymin), xmax-xmin+1, ymax-ymin+1
             color = 'b'
+            crop_img = img[ymin:ymax, xmin:xmax]
+            txt = pytesseract.image_to_string(crop_img)
             currentAxis.add_patch(plt.Rectangle(*coords, fill=False, edgecolor=color, linewidth=2))
-            currentAxis.text(xmin, ymin, name, bbox={'facecolor':'white', 'alpha':0.5})
+            currentAxis.text(xmin, ymin, txt, bbox={'facecolor':'white', 'alpha':0.5})
 
     plt.savefig(outpath)
 
@@ -170,9 +176,6 @@ def index_post():
     # save illustration
     output_path = os.path.join(dirpath, 'output.png')
     run(in_path, output_path)
-    
-    #cv2.imwrite(output_path, img)
-
     return render_template('index.html', session_id=session_id)
 
 
