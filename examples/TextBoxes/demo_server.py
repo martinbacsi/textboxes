@@ -103,7 +103,7 @@ def run(inpath, outpath):
         top_xmax = det_xmax[top_indices]
         top_ymax = det_ymax[top_indices]
 
-        for i in xrange(top_conf.shape[0]):
+        for i in range(top_conf.shape[0]):
             xmin = int(round(top_xmin[i] * image.shape[1]))
             ymin = int(round(top_ymin[i] * image.shape[0]))
             xmax = int(round(top_xmax[i] * image.shape[1]))
@@ -182,11 +182,11 @@ def index_post():
 def main():
     global checkpoint_path
     parser = argparse.ArgumentParser()
-    parser.add_argument('--port', default=8769, type=int)
+    parser.add_argument('--port', default=1234, type=int)
     parser.add_argument('--debug', action='store_true')
     args = parser.parse_args()
 
-    app.debug = args.debug
+    app.debug = True
     app.run('0.0.0.0', args.port)
 
 if __name__ == '__main__':
