@@ -11,9 +11,6 @@ Recommend: [TextBoxes++](https://github.com/MhLiao/TextBoxes_plusplus) is an ext
 ### Installation
 1. Get the code. We will call the directory that you cloned Caffe into `$CAFFE_ROOT`
   ```Shell
-  git clone https://github.com/MhLiao/TextBoxes.git
-  
-  cd TextBoxes
   
   make -j8
   
@@ -24,7 +21,7 @@ Recommend: [TextBoxes++](https://github.com/MhLiao/TextBoxes_plusplus) is an ext
 
 ### Test
 1. run "python examples/TextBoxes/demo_server.py".
-2. You can modify the "use_multi_scale" in the "examples/demo.py" script to control whether to use multi-scale or not.
+2. You can modify the "use_multi_scale" in the "examples/demo_server.py" script to control whether to use multi-scale or not.
 3. The results are saved in the "examples/results/".
 
 
